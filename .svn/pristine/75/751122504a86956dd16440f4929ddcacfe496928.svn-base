@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <title>云训练 后台主题框架</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="../js/favicon.ico"> 
+    <link href="../css/bootstrap.min.css@v=3.3.5" rel="stylesheet">
+    <link href="../css/font-awesome.min.css@v=4.4.0" rel="stylesheet">
+    
+    <!-- easy-ui -->
+    <link rel="stylesheet" type="text/css" href="../js/je-1.7.0/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../js/je-1.7.0/themes/icon.css">
+
+    
+    <!-- Data Tables --> 
+    <link href="../css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+	<!-- jqgrid-->
+    <link href="../css/plugins/jqgrid/ui.jqgrid.css@0820" rel="stylesheet">
+
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/style.min.css@v=4.0.0" rel="stylesheet"><base target="_blank">
+
+	<style>
+        /* Additional style to fix warning dialog position */
+        
+        #alertmod_table_list_2 {
+            top: 900px !important;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+    <div class="row wrapper wrapper-content animated fadeInRight">
+       
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>查询条件选择区</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>       
+                    </div>
+                </div>
+                
+                <div class="ibox-content">
+					<div class="row">
+						<div class="col-sm-2" style="width: 325px">
+							<select id="selectName1" class="select col-sm-3" 
+								style="width: 93px; height: 34px" onclick="selectCondition();">
+								<option selected="selected">用户编号：</option>
+								<option>姓名：</option>
+								<option>警号：</option>
+								<option>手机号：</option>
+								<option>昵称：</option>
+							</select>
+							<div class="formControls col-sm-7" style="width: 200px; padding-left: 0px">
+								<input id="selectContent1" class="easyui-combobox" style="height: 34px; width: 200px; -webkit-border-radius: 0px 0px 0px 0px; border-radius: 0px 0px 0px 0px;"
+									data-options="method:'get', valueField:'ID', textField:'Name', panelHeight:'240px'">
+							</div>
+						</div>
+						
+						<div class="col-sm-3" style="width: 490px">
+							<label class="form-label col-sm-3" style="width: 80px; margin-top: 8px">用户类型：</label>
+							<select id="selectName2" class="select col-sm-3" style="width: 90px; height: 34px">
+								<option selected="selected"></option>
+								<option>学员</option>
+								<option>教员</option>
+								<option>游客</option>
+								<option>作者</option>
+							</select>
+						</div>
+							
+						<div class="col-sm-3"  style="width: 110px">
+							<button class="btn btn-primary col-sm-2" type="submit"
+								onclick="select_user();"  style="width: 110px">
+								查询  <i class="Hui-iconfont Hui-iconfont-search1 size-L"></i>
+							</button>
+						</div>
+						
+					</div>
+
+				</div>
+            </div>     
+        </div>
+
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>信息录入区 </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>      
+                    </div>
+                </div>
+                
+                <div class="ibox-content" contenteditable="true">                         	
+                    <div class="row">                                                 	 
+                        <div class="col-sm-2" style="width: 220px"> 
+                            <label class="form-label col-sm-4" style="width:80px; margin-top: 8px">用户姓名：</label>
+            				<div class="formControls col-sm-8" style="width:110px">
+								<input type="text" class="form-control" id="userName" autocomplete="off" autocomplete="off"
+									maxlength="20" onkeyup="this.value=this.value.replace(/\d|\s+/g,'')">
+							</div>
+                        </div>
+                        
+                        <div class="col-sm-3" style="width:280px"> 
+                            <label class="form-label col-sm-3"  style="width:80px; margin-top: 8px">手机号码：</label>
+            				<div class="formControls col-sm-8" style="width:170px">
+								<input type="text" class="form-control" id="userPhone" autocomplete="off"
+									maxlength="11" onblur="if (!/^\d{11}$/.test(this.value)){this.value='';}"
+									onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
+							</div>
+                        </div>
+                        
+                        <div class="col-sm-3" style="width:175px"> 
+                            <label class="form-label col-sm-3"  style="width:55px; margin-top: 8px">警号：</label>
+            				<div class="formControls col-sm-8" style="width:90px">
+								<input type="text" class="form-control" id="userAccount" autocomplete="off"
+									maxlength="7" onblur="if (!/(^\d{6}$)|(^\d{7}$)/.test(this.value)){this.value='';}"
+									onkeyup="this.value=this.value.replace(/\s+/g,'')">
+							</div>
+                        </div>
+
+						<div class="col-sm-2" style="width:280px">
+                            <label class="form-label col-sm-3"  style="width:55px; margin-top: 8px">昵称：</label>
+                            <div class="formControls col-sm-8" style="width:195px">
+								<input type="text" class="form-control" id="userNickname" autocomplete="off"
+									maxlength="20" onkeyup="this.value=this.value.replace(/\s+/g,'')">
+							</div>
+                        </div>                         
+                    </div>
+
+		         	<br></br>
+                    <div class="row">
+                    	<div class="col-sm-1" style="width:220px">
+					        <label class="form-label col-sm-4" style="width:85px; margin-top: 8px">用户类型：</label>
+							<select id="userLevel" class="easyui-combobox"  style="height: 34px;width:105px;"
+								data-options="multiple:true, panelHeight:'auto'">
+							    <option selected="selected">学员</option>
+							    <option>教员</option>
+							    <option>作者</option>
+							</select>
+                        </div> 
+                        
+                        <div class="col-sm-3" style="width:280px"> 
+                            <label class="form-label col-sm-3"  style="width:80px; margin-top: 8px">身份证号：</label>
+            				<div class="formControls col-sm-8" style="width:170px">
+								<input type="text" class="form-control" id="userIDnumber" autocomplete="off"
+									maxlength="18" onblur="if (!/(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(this.value)){this.value='';}"
+									onkeyup="this.value=this.value.replace(/\s+/g,'')">
+							</div>
+                        </div>
+						
+						<div class="col-sm-3" style="width:175px"> 
+                            <label class="form-label col-sm-3"  style="width:55px; margin-top: 8px">职称：</label>
+            				<div class="formControls col-sm-8" style="width:90px">
+								<input type="text" class="form-control" id="userJobtitle" autocomplete="off"
+									maxlength="20" onkeyup="this.value=this.value.replace(/\d|\s+/g,'')">
+							</div>
+                        </div>
+                        
+                        <div class="col-sm-3" style="width:280px"> 
+                            <label class="form-label col-sm-3"  style="width:55px; margin-top: 8px">单位：</label>
+            				<div class="formControls col-sm-8" style="width:195px">
+								<input type="text" class="form-control" id="userJob" autocomplete="off"
+									maxlength="30" onkeyup="this.value=this.value.replace(/\s+/g,'')">
+							</div>
+                        </div>
+											
+                   </div> 
+                       
+                       					  
+                      <br></br>
+                      <div class="row">                        
+                        <div class="col-sm-3" style="width:317px">  
+							<label class="form-label col-sm-4" style="width:80px">本人头像：</label>										
+							<div class="formControls col-sm-6" style="width:70px; heigh:34px">
+								<input type="file"  id="userPhoto1File" accept=".jpg,.bmp" style="width:69px;border:1px solid"/>
+							</div>
+							<label class="col-sm-2 form-label" style="width:63px">
+								<button type="submit" style="padding-left: 1px; width:62px; display: none" class="btn btn-primary" id="userphoto1_see">预览</button></label>
+							<label class="col-sm-2 form-label" style="width:63px">
+								<button type="submit" style="width:63px;display: none" class="btn btn-primary" id="deletephoto1"
+									onclick="deletePhoto1();">删除</button></label>
+						</div>
+                        
+                        <div class="col-sm-3" style="width:358px">  
+							<label class="form-label col-sm-4" style="width:80px">卡通头像：</label>											
+							<div class="formControls col-sm-6" style="width:70px; heigh:34px">
+								<input type="file"  id="userPhoto2File"accept=".jpg,.bmp" style="width:69px;border:1px solid"/>
+							</div>
+							<label class="col-sm-2 form-label" style="width:63px">
+								<button type="submit" style="padding-left: 1px; width:62px; display: none" class="btn btn-primary" id="userphoto2_see">预览</button></label>
+							<label class="col-sm-2 form-label" style="width:63px">
+								<button type="submit" style="width:63px; display: none" class="btn btn-primary" id="deletephoto2"
+									onclick="deletePhoto2();">删除</button></label>
+						</div>
+						
+						<div class="col-sm-2" style="width: 140px"> 
+                            <label class="form-label col-sm-4" style="width:55px">性别：</label>
+            				<div class="formControls col-sm-8" style="width:55px">
+	            				<select id="userSex" class="select col-sm-3" style="width: 50px; height: 34px">
+									<option selected="selected">男</option>
+									<option>女</option>
+								</select>
+								<!--  <input type="text" class="form-control" id="userSex">-->
+							</div>
+                        </div>
+                              		
+                   </div>
+                    
+                   <br></br>
+				  <div class="row">
+						<div class="col-sm-6" style="width: 815px">
+							<label class="form-label col-sm-3" style="width: 80px">用户简介：</label>
+							<div class="formControls col-sm-9" style="width: 567px">
+								<textarea id="userIntroduce" class="form-control" maxlength="400"  rows="4"></textarea>
+							</div>
+						</div>
+					
+						<div class="col-sm-2">
+	                     	  <button class="btn btn-primary" id="tijiao" type="submit"  disabled="true"
+	                     	  	  onclick="submit_user();">提交</button>
+	                     	  <button class="btn btn-primary" id="baocun" style="display: none" type="submit"   
+	                     	  		onclick="update_user();">保存</button>
+	                  		  <button class="btn btn-primary" type="submit" onclick="cancel_user();">取消</button>
+	                    </div> 
+				  	</div> 
+				</div>
+			</div>
+        </div>
+
+		<div class="col-sm-12">
+			<div class="ibox ">
+				<div class="ibox-title">
+					<h5>数据显示区</h5>
+					<div class="ibox-tools">
+						<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+						</a>
+					</div>
+				</div>
+				<div class="ibox-content">
+					<div class="col-sm-12">
+						<div class="col-sm-2" style="width: 70px">
+							<button id="tianjia" class="btn btn-white" type="submit" onclick="add_user();">
+								添加 <i class="Hui-iconfont Hui-iconfont-add size-L"></i>
+							</button>
+						</div>
+						<div class="col-sm-2" style="width: 70px">
+							<button id="shanchu" class="btn btn-white" type="submit" onclick="delete_user();">
+								删除 <i class="Hui-iconfont Hui-iconfont-del size-L"></i>
+							</button>
+						</div>
+						<div class="col-sm-2" style="width: 70px">
+							<button id="bianji" class="btn btn-white" type="submit" onclick="edit_user();">
+								编辑 <i class="Hui-iconfont Hui-iconfont-edit2 size-L"></i>
+							</button>
+						</div>
+						<div class="col-sm-2" style="width: 70px">
+							<button id="shuaxin" class="btn btn-white" type="submit" onclick="refresh_user();">
+								刷新 <i class="Hui-iconfont Hui-iconfont-huanyipi size-L"></i>
+							</button>
+						</div>
+						<div class="col-sm-2" style="width: 90px">
+							<button id="chongzhimima" class="btn btn-white" type="submit" onclick="password_update();">
+								重置密码 <i class="Hui-iconfont Hui-iconfont-key size-L"></i>
+							</button>
+						</div>
+
+					</div>
+
+					<br></br>
+					  
+					<div class="jqGrid_wrapper">
+						<table id="table_list_2">
+
+						</table>
+						<div id="pager_list_2"></div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 隐藏推荐图弹窗-->	
+	<div id="userphoto1" style="display:none">
+		<img id="photo1id" alt="image" src="" style="width:300px; height:300px" />
+	</div>
+	
+	<!-- 隐藏缩略图弹窗-->	
+	<div id="userphoto2" style="display:none">
+		<img id="photo2id" alt="image" src="" style="width:300px; height:300px" />
+	</div>
+	
+	<!-- 隐藏清空弹窗-->	
+	<div id="userdelete" style="display:none">
+		<div class="ibox-content">
+			<div style="margin-left: 15px; font-size: 20px">
+				确认将此用户删除吗？
+			</div>
+			<div style="height: 20px"></div>	
+            <div>      
+               <div style="margin-left: 170px">
+                	<button class="btn btn-primary"type="submit"   onclick="deleteconfirm();">确认</button>
+                	
+             		<button class="btn btn-primary" type="submit" onclick="cancel_user();">取消</button>
+               </div>
+           </div> 
+        </div>
+	</div>
+	
+	<!-- 隐藏密码重置弹窗-->	
+	<div id="passwordSet" style="display:none">
+		<div class="ibox-content">
+			<div style="margin-left: 15px; font-size: 20px">
+				确认重置用户密码吗？
+			</div>
+			<div style="height: 20px"></div>	
+            <div>      
+               <div style="margin-left: 170px">
+                	<button class="btn btn-primary"type="submit"   onclick="setconfirm();">确认</button>
+                	
+             		<button class="btn btn-primary" type="submit" onclick="cancel_user();">取消</button>
+               </div>
+           </div> 
+        </div>
+	</div>
+	
+
+	<!--_footer 作为公共模版分离出去--> 
+	<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
+	<script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script> 
+	<script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+	
+
+	
+	<!--请在下方写此页面业务相关的脚本-->
+	<script type="text/javascript" src="../lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+	<script type="text/javascript" src="../lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+	<script type="text/javascript" src="../lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+	<script type="text/javascript" src="../lib/My97DatePicker/4.8/WdatePicker.js"></script>
+	
+	    
+    <!-- easy-ui插件  -->
+    <script type="text/javascript" src="../js/je-1.7.0/jquery.easyui.min.js"></script>
+	    
+    <!--  <script src="js/jquery.min.js?v=2.1.4"></script>-->
+    <script src="../js/bootstrap.min.js?v=3.3.5"></script>
+    <script src="../js/content.min.js?v=1.0.0"></script>
+    
+    
+    <script src="../js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="../js/plugins/jqgrid/i18n/grid.locale-cn.js@0820"></script>
+    <script src="../js/plugins/jqgrid/jquery.jqGrid.min.js@0820"></script>
+    
+     
+    <script type="text/javascript" src="../js/user.js"></script>
+    
+    
+    <!--  
+    <script type="text/javascript" src="../../../tajs.qq.com/stats@sId=9051096" charset="UTF-8"></script>
+    -->
+</body>
+
+</html>
+

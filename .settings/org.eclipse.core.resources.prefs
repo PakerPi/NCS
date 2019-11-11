@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+encoding//WebContent/page/boat.html=UTF-8
+encoding//WebContent/page/demo_page1.html=UTF-8
+encoding//src/com/whut/action/MobileServerAction.java=UTF-8
+encoding//src/com/whut/action/UserManageAction.java=UTF-8
+encoding//src/com/whut/dao/IBaseDao.java=UTF-8
+encoding//src/com/whut/dao/impl=UTF-8
+encoding//src/com/whut/dao/impl/BaseDaoImpl.java=UTF-8
+encoding//src/com/whut/dao/impl/XLSXCovertCSVReader.java=UTF-8
+encoding//src/com/whut/model=UTF-8
+encoding//src/com/whut/util/BaseAction.java=UTF-8
+encoding//src/com/whut/util/FileUploadAppProperties.java=UTF-8
+encoding//src/com/whut/util/GenericsUtils.java=UTF-8
+encoding//src/com/whut/util/PageInfo.java=UTF-8
+encoding//src/com/whut/xlsHelper/Excel2Sql.java=UTF-8

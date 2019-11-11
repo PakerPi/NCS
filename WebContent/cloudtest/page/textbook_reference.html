@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>参考文献导入</title>
+    <link href="../css/bootstrap.min.css@v=3.3.5" rel="stylesheet">
+    <link href="../css/style.min.css@v=4.0.0" rel="stylesheet">
+    <script src="../lib/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../lib/layer/2.4/layer.js"></script>
+    <script src="../js/bootstrap.min.js?v=3.3.5"></script>
+    
+	<style type="text/css">
+		.Chosen{
+			background-color:#00FFFF
+		}
+	</style>
+</head>
+<body>
+    <div style="overflow:hidden">
+            <div style="position: fixed; width:15%;float: left;height: 100%;">
+                    <button onclick="addChapterA()" id="buttonA" 
+                    	style="width: 80px; margin-bottom: 3px; background-color:#009f95; color: #fff; border-style: none">添加</button>
+                    <br>
+                    <button onclick="del()" id="button_delete"
+                    	style="width: 80px; margin-bottom: 3px; background-color:#009f95; color: #fff; border-style: none">删除</button>
+                    <br>
+                    <button onclick="update()" id="button_edit"
+                    	style="width: 80px; margin-bottom: 3px; background-color:#009f95; color: #fff; border-style: none">编辑</button>
+                    <br>
+                    <button onclick="clearreference()" id="button_clear"
+                    	style="width: 80px; margin-bottom: 3px; background-color:#009f95; color: #fff; border-style: none">清空</button>
+                    <br>
+                    <button onclick="trans()" id="button_ajax"
+                    	style="width: 80px; margin-bottom: 3px; background-color:#009f95; color: #fff; border-style: none">保存</button>
+             </div>
+            <div style="width:85%;float:right">
+                  <div class="ibox-content">
+                      <table class="table" >
+                          <thead>
+                              <tr>
+                                  <th style="width: 40px">序号</th>
+                                  <th style="width: 120px">文献作者</th>
+                                  <th style="width: 150px">文献名称</th>
+                                  <th style="width: 40px">类型</th>
+                                  <th style="width: 60px">出版地点</th>
+                                  <th style="width: 120px">出版社</th>
+                                  <th style="width: 60px">出版年份</th>
+                              </tr>
+                          </thead>
+                          <tbody id = "root">
+
+                          </tbody>
+                      </table>
+                  </div>
+                
+            </div>
+
+       
+            <div id="addchapterA" style="display:none">                
+                <p> </p>
+	           	<div style="margin-left:15px"> 文献序号：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input1" autocomplete="off">
+	           	</div>
+	           	<p> </p>
+	           	<div style="margin-left:15px"> 文献作者：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input2" autocomplete="off">
+	           	</div>
+	           	<p> </p>
+	           	<div style="margin-left:15px"> 文献名称：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input3" autocomplete="off">
+	           	</div>
+	           	<p> </p>
+	           	<div style="margin-left:15px"> 文献类型：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input4" autocomplete="off">
+	           	</div>
+	           	<p> </p>
+	           	<div style="margin-left:15px"> 出版地点：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input5" autocomplete="off">
+	           	</div>
+	           	<p> </p>
+	           	<div style="margin-left:29px"> 出版社：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input6" autocomplete="off">
+	           	</div>
+	           	<p> </p>
+	           	<div style="margin-left:15px"> 出版年份：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input7" autocomplete="off">
+	           	</div>
+
+	           	<p> </p>
+	            <div >
+                    <button onclick="saveChA()" style=" margin-left: 278px;margin-right: 0px;
+                    	 background-color:#009f95; color: #fff; border-style: none; width: 50px; height: 25px">确定</button>
+                    <button onclick="cancel()" style=" background-color:#009f95; color: #fff; margin-left: 1px;
+                    	 border-style: none; width: 50px; height: 25px">取消</button>
+                </div>
+            </div>
+            
+            <div id="del" style="display:none">
+				<p></p>
+				<div style="margin-left: 25px">确认删除吗？</div>
+				<p></p>
+				<div>
+					<button onclick="delconfirm()"	style="margin-left: 115px; margin-right: 0px; background-color: #009f95;
+						 color: #fff; border-style: none; width: 50px; height: 25px">确定</button>
+					<button onclick="cancel()" style="background-color: #009f95; color: #fff; margin-left: 1px;
+						 border-style: none; width: 50px; height: 25px">取消</button>
+				</div>
+			</div>
+			
+            <div id="update" style="display:none">
+                 <p> </p>
+	           	<div style="margin-left:15px"> 文献序号：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input11" autocomplete="off">
+	           	</div>
+	           	<p> </p>
+	           	<div style="margin-left:15px"> 文献作者：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input22" autocomplete="off">
+	           	</div>
+	           	<p> </p>
+	           	<div style="margin-left:15px"> 文献名称：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input33" autocomplete="off">
+	           	</div>
+	           	<p> </p>
+	           	<div style="margin-left:15px"> 文献类型：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input44" autocomplete="off">
+	           	</div>
+	           	<p> </p>
+	           	<div style="margin-left:15px"> 出版地点：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input55" autocomplete="off">
+	           	</div>
+	           	<p> </p>
+	           	<div style="margin-left:29px"> 出版社：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input66" autocomplete="off">
+	           	</div>
+	           	<p> </p>
+	           	<div style="margin-left:15px"> 出版年份：
+	           		<input type="text" style="width:300px; height:28px; font-size:18px" id="input77" autocomplete="off">
+	           	</div>
+
+	           	<p> </p>
+	            <div >
+                    <button onclick="saveupdate()" style=" margin-left: 278px;margin-right: 0px;
+                    	 background-color:#009f95; color: #fff; border-style: none; width: 50px; height: 25px">确定</button>
+                    <button onclick="cancel()" style=" background-color:#009f95; color: #fff; margin-left: 1px;
+                    	 border-style: none; width: 50px; height: 25px">取消</button>
+                </div>
+            </div>
+            <div id="clear" style="display:none">
+            	<p> </p>
+            	<div  style="margin-left: 25px">确认清空吗？</div>
+            	<p> </p>
+                <div>
+                    <button onclick="clearconfirm()" style=" margin-left: 115px;margin-right: 0px;
+                    	 background-color:#009f95; color: #fff; border-style: none; width: 50px; height: 25px">确定</button>
+                    <button onclick="cancel()" style=" background-color:#009f95; color: #fff; margin-left: 1px;
+                    	 border-style: none; width: 50px; height: 25px">取消</button>
+                </div>
+            </div>
+           <div id="savedata" style="display:none">
+            	<p> </p>
+            	<div  style="margin-left: 25px">编辑数据已保存，谢谢</div>
+            	<p> </p>
+                <div>
+                    <button onclick="cancel()" style=" margin-left: 115px;margin-right: 0px;
+                    	 background-color:#009f95; color: #fff; border-style: none; width: 50px; height: 25px">确定</button>
+                </div>
+            </div>
+
+
+    </div>
+    <script type="text/javascript">
+        var reference = [];
+        var whichLayer;
+        var loc;
+
+        function addChapterA(){
+            whichLayer = layer.open({
+                title :'添加',
+                type: 1,
+                shade: 0.5,
+                shadeClose : false,
+                scrollbar: false,
+                skin : 'layui-layer-molv',
+                area : [ '415px', '360px' ],
+                content:  $('#addchapterA')
+            })
+        }
+        
+        function del(){
+            if(!$('tr').hasClass('Chosen')){
+            	layer.alert("请选择一条数据",{skin: 'layui-layer-molv'});
+                return
+            }
+            loc = $('.Chosen').find('td').eq(0).text();
+            
+            whichLayer = layer.open({
+                title :'删除',
+                type: 1,
+                shade: 0.5,
+                shadeClose : false,
+                scrollbar: false,
+                skin: 'layui-layer-molv',
+                area : [ '240px', '140px' ],
+                content:  $('#del')
+            })
+            
+        }
+        function update(){
+            if(!$('tr').hasClass('Chosen')){
+                layer.alert("请选择一条数据",{skin: 'layui-layer-molv'});
+                return;
+            }
+            loc = $('.Chosen').find('td').eq(0).text();
+            $("#input11").val($('.Chosen').find('td').eq(0).text());
+            $("#input22").val($('.Chosen').find('td').eq(1).text());
+            $("#input33").val($('.Chosen').find('td').eq(2).text());
+            $("#input44").val($('.Chosen').find('td').eq(3).text());
+            $("#input55").val($('.Chosen').find('td').eq(4).text());
+            $("#input66").val($('.Chosen').find('td').eq(5).text());
+            $("#input77").val($('.Chosen').find('td').eq(6).text());
+            
+            whichLayer = layer.open({
+                title :'编辑',
+                type: 1,
+                shade: 0.5,
+                shadeClose : false,
+                scrollbar: false,
+                skin : 'layui-layer-molv',
+                area : [ '415px', '360px' ],
+                content:  $('#update')
+            })
+        }
+        function clearreference(){
+            whichLayer = layer.open({
+                title :'信息',
+                type: 1,
+                shade: 0.5,
+                shadeClose : false,
+                scrollbar: false,
+                skin: 'layui-layer-molv',
+                area : [ '240px', '140px' ],
+                content:  $('#clear')
+            })
+        }
+
+
+        function clearconfirm(){
+            layer.close(whichLayer)
+            reference = [];
+            refresh();
+            //layer.alert("清空成功",{skin: 'layui-layer-molv'});
+        }
+        
+        function cancel(){
+            layer.close(whichLayer)
+        }
+
+        function delconfirm(){
+            layer.close(whichLayer)
+            reference.splice(loc-1, 1);
+            refresh()
+            //layer.alert("删除成功",{skin: 'layui-layer-molv'});
+        }
+        function saveupdate(){
+            var str = "{\"referenceSeq\":\"" + $('#input11').val() + "\"," +
+    		"\"referenceAuthor\":\"" + $('#input22').val() +"\"," +
+    		"\"referenceName\":\"" + $('#input33').val() +"\"," +
+    		"\"referenceClass\":\"" + $('#input44').val() +"\"," +
+    		"\"referencePublic\":\"" + $('#input55').val() +"\"," +
+    		"\"referencePublicadd\":\"" + $('#input66').val() +"\"," +
+    		"\"referencePublictime\":\"" + $('#input77').val() +"\"}";
+            	
+    		layer.close(whichLayer);
+    		var json = $.parseJSON(str);
+            reference.splice(loc-1, 1);
+            reference.splice(loc-1, 0, json);
+            refresh();
+            clearinput2();
+ 
+            //layer.alert("编辑成功",{skin: 'layui-layer-molv'});
+        }
+
+        function saveChA(){            
+            var str = "{\"referenceSeq\":\"" + $('#input1').val() + "\"," +
+    		"\"referenceAuthor\":\"" + $('#input2').val() +"\"," +
+    		"\"referenceName\":\"" + $('#input3').val() +"\"," +
+    		"\"referenceClass\":\"" + $('#input4').val() +"\"," +
+    		"\"referencePublic\":\"" + $('#input5').val() +"\"," +
+    		"\"referencePublicadd\":\"" + $('#input6').val() +"\"," +
+    		"\"referencePublictime\":\"" + $('#input7').val() +"\"}";
+            	
+    		layer.close(whichLayer);
+    		var json = $.parseJSON(str);
+            reference.push(json);
+            refresh();
+            clearinput1();
+        }
+
+        function refresh(){
+            let content = "";
+            for(let i = 0;i<reference.length;i++){
+                //content += JSON.stringify(reference[i]);
+                content += "<tr>" + "<td>" + reference[i].referenceSeq + "</td>" 
+		        		+ "<td>" + reference[i].referenceAuthor + "</td>"
+		        		+ "<td>" + reference[i].referenceName + "</td>"
+		        		+ "<td>" + reference[i].referenceClass + "</td>"
+		        		+ "<td>" + reference[i].referencePublic + "</td>"
+		        		+ "<td>" + reference[i].referencePublicadd + "</td>"
+		        		+ "<td>" + reference[i].referencePublictime + "</td>" + "</tr>";
+            }
+            $('#root').html(content);
+        }
+        
+        function trans(){
+        	parent.$('#reference_add').val(JSON.stringify(reference));
+        	whichLayer = layer.open({
+                title :'保存',
+                type: 1,
+                shade: 0.5,
+                shadeClose : false,
+                scrollbar: false,
+                skin: 'layui-layer-molv',
+                area : [ '240px', '140px' ],
+                content:  $('#savedata')
+            });
+        }
+        
+        $(document).ready(function(){
+        	//reference = $.parseJSON(parent.$('#reference_add').val());
+        	var st = parent.$('#reference_add').val();
+        	reference = [];
+        	if(st != "")
+        		reference = $.parseJSON(st);
+        	refresh();
+        })
+        
+        //监控选中的行，每次都先清除类名，再赋给选中
+        $(document).on("click", "#root tr", function () { //只能用document on只有这个符合后加载
+	  			$('#root tr').removeClass('Chosen');	
+	  			$(this).addClass('Chosen');
+		});
+        
+        
+        function clearinput1(){
+        	$('#input1').val("");
+    		$('#input2').val("");
+    		$('#input3').val("");
+    		$('#input4').val("");
+    		$('#input5').val("");
+    		$('#input6').val("");
+    		$('#input7').val("");
+        }
+        
+        function clearinput2(){
+        	$('#input11').val("");
+    		$('#input22').val("");
+    		$('#input33').val("");
+    		$('#input44').val("");
+    		$('#input55').val("");
+    		$('#input66').val("");
+    		$('#input77').val("");
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <title>云训练 后台主题框架</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="../js/favicon.ico"> 
+    <link href="../css/bootstrap.min.css@v=3.3.5" rel="stylesheet">
+    <link href="../css/font-awesome.min.css@v=4.4.0" rel="stylesheet">
+    
+    <!-- easy-ui -->
+    <link rel="stylesheet" type="text/css" href="../js/je-1.7.0/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../js/je-1.7.0/themes/icon.css">
+
+    
+    <!-- Data Tables -->
+    <link href="../css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+	<!-- jqgrid-->
+    <link href="../css/plugins/jqgrid/ui.jqgrid.css@0820" rel="stylesheet">
+
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/style.min.css@v=4.0.0" rel="stylesheet"><base target="_blank">
+
+	<style>
+        /* Additional style to fix warning dialog position */
+        
+        #alertmod_table_list_2 {
+            top: 900px !important;
+        }
+    </style>
+</head>
+
+
+<body>
+	<div class="col-sm-12">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>信息录入区</h5>
+				<div class="ibox-tools">
+					<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="ibox-content">
+				<div class="row">
+					<div style="width: 650px">
+						<label class="form-label col-sm-4" style="width: 120px; margin-left:10px">批量导入学员：</label>
+						<div class="formControls col-sm-4"
+							style="width: 160px; heigh: 34px">
+							<input type="file" id="userFile" accept=".xls"
+								style="width: 160px; border: 1px solid" />
+						</div>
+						<label class="col-sm-2 form-label" style="width: 55px; margin-left:15px">
+							<button type="submit" class="btn btn-primary" onclick="userImport();">导入</button>
+						</label>
+						<label class="col-sm-2 form-label" style="width: 90px; margin-left:15px">
+							<button type="submit" class="btn btn-primary" >
+								<a href="../file/userInfo.xls" download="userinfo.xls">模板下载</a>
+							</button>
+						</label>
+					</div>
+				</div>
+				
+				<br></br>
+				<div class="row">
+					<div style="width: 650px">
+						<label class="form-label col-sm-4" style="width: 120px; margin-left:10px">批量导入教员：</label>
+						<div class="formControls col-sm-6"
+							style="width: 160px; heigh: 34px">
+							<input type="file" id="teacherFile" accept=".xls"
+								style="width: 160px; border: 1px solid" />
+						</div>
+						<label class="col-sm-2 form-label" style="width: 55px; margin-left:15px">
+							<button type="submit" class="btn btn-primary" onclick="teacherImport();">导入</button>
+						</label>
+						<label class="col-sm-2 form-label" style="width: 90px; margin-left:15px">
+							<button type="submit" class="btn btn-primary" >
+								<a href="../file/teacherInfo.xls" download="teacherinfo.xls">模板下载</a>
+							</button>
+						</label>
+					</div>
+				</div>
+
+				<!-- <br></br>
+				<!-- <div class="row">
+						<div class="row" style="height: 34px; margin-left:12px">
+							<label class="form-label col-sm-4" 
+							style="width: 2200px; margin-left:0px; font-size: 16px">批量导入学员和课程关联：</label>
+						</div>
+						<div class="row">
+							<div style="width:350px; height: 28px; margin-left:15px">
+								<label class="form-label col-sm-4" style="width: 92px; margin-left:12px">起始学员：</label>
+								<input id="userStartId" class="easyui-combobox" style="height: 24px; width: 170px"
+									data-options="method:'get', valueField:'ID', textField:'Name', panelHeight:'240px'">
+							</div>
+							
+							<div style="width:350px; height: 28px; margin-left:15px">
+								<label class="form-label col-sm-4" style="width: 92px; margin-left:12px">结束学员：</label>
+								<input id="userEndId" class="easyui-combobox" style="height: 24px; width: 170px"
+									data-options="method:'get', valueField:'ID', textField:'Name', panelHeight:'240px'">
+							</div>
+							
+							<div style="width:320px; height: 28px; margin-left:15px">
+								<label class="form-label col-sm-4" style="width: 92px; margin-left:12px">关联课程：</label>
+								<input id="relateCourse" class="easyui-combobox" style="height: 24px; width: 170px"
+									data-options="method:'get', valueField:'ID', textField:'Name', multiple:true, panelHeight:'240px'">
+							</div>
+							
+							<label class="col-sm-2 form-label" style="width: 55px; margin-left:32px">
+								<button type="submit" class="btn btn-primary" onclick="relateImport();">关联</button>
+							</label>
+						</div>
+						
+				</div> -->
+
+			</div>
+		</div>
+	</div>
+
+
+	<!--_footer 作为公共模版分离出去--> 
+	<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
+	<script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script> 
+	<script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+	
+
+	
+	<!--请在下方写此页面业务相关的脚本-->
+	<script type="text/javascript" src="../lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+	<script type="text/javascript" src="../lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+	<script type="text/javascript" src="../lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+	<script type="text/javascript" src="../lib/My97DatePicker/4.8/WdatePicker.js"></script>
+	
+	    
+    <!-- easy-ui插件  -->
+    <script type="text/javascript" src="../js/je-1.7.0/jquery.easyui.min.js"></script>
+	    
+    <!--  <script src="js/jquery.min.js?v=2.1.4"></script>-->
+    <script src="../js/bootstrap.min.js?v=3.3.5"></script>
+    <script src="../js/content.min.js?v=1.0.0"></script>
+    
+    
+    <script src="../js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="../js/plugins/jqgrid/i18n/grid.locale-cn.js@0820"></script>
+    <script src="../js/plugins/jqgrid/jquery.jqGrid.min.js@0820"></script>
+    
+    <script type="text/javascript" src="../js/import.js"></script>
+
+</body>
+</html>
+

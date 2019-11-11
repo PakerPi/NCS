@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../js/je-1.7.0/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../js/je-1.7.0/themes/icon.css">
+    <link rel="shortcut icon" href="../js/favicon.ico"> 
+    
+    <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css" />
+	<link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css" />
+</head>
+
+<body>
+	<div style="display:flex; height: 400px" >	 
+		 <div id="container1" style="width:450px;height:380px"></div>
+	     <div id="container2" style="width:450px;height:380px"></div>
+	     <div id="container" style="width:450px;height:380px;"></div>     
+	</div>
+	 
+	<div class="row">
+		<div class="col-sm-3" style="width:310px; margin-top: 50px">
+			<label class="col-sm-2" style="width: 100px; margin-left: 50px; font-size: 16px; margin-top: 4px"> 目标人数：</label>
+			<input class="form-control" style="width:80px; height: 34px; padding-left: 12px" 
+				type="text" autocomplete="off" id="aimPeople"
+				maxlength="5" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
+			<button class="btn btn-primary" id="confirm" type="submit" 
+				style="width: 70px" onclick="confirm();">确认</button>
+		</div>
+		<div id="container11" style="max-width: 1000px; height: 115px"></div>
+	</div>
+	<!--<a href="javascript:void(0);" onclick="toDesktop('http:\//www.163.com/','163网易')">创建快捷方式</a>
+	 
+	<a href="../../login.html">
+    	拖动快捷方式至桌面
+    	<i class="icon"/>
+	</a> -->
+	
+	<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/je-1.7.0/jquery.easyui.min.js"></script>
+    
+    <!--  <script type="text/javascript" src="../js/locale/easyui-lang-zh_CN.js"></script>-->
+    
+    <script type="text/javascript" src="../js/Highcharts-7.0.3/code/highcharts.js"></script>
+    <script type="text/javascript" src="../js/Highcharts-7.0.3/code/highcharts-3d.js"></script>
+    <script type="text/javascript" src="../js/Highcharts-7.0.3/code/highcharts-more.js"></script>
+
+    <script type="text/javascript" src="../js/Highcharts-7.0.3/code/modules/bullet.js"></script>
+
+    <script type="text/javascript" src="../js/shouye.js">  </script>
+</body>
+</html>
